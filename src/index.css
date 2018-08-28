@@ -1,0 +1,40 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css';
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+hr {
+	margin-top: 0;
+}
+
+.columns {
+	height: 100%;
+}
+
+.box {
+	background-color: white;
+	border-radius: 0;
+	padding: 1.25rem;
+}
+
+.sidebar-container {
+	background-color: #555b6e;
+	overflow-y: scroll;
+}
+
+.dropzone {
+	transition: all 0.1s ease;
+	width: 100%;
+	color: white;
+	text-align: center;
+	padding: 1rem;
+	padding-bottom: 1.5rem;
+	cursor: pointer;
+}
+
+.dropping {
+	background-color: #9ee493;
+}
