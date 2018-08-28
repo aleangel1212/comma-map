@@ -11,7 +11,7 @@ class Map extends Component {
 		// ));
 		return (
 			<div
-				className="map-container column is-two-thirds"
+				className="map-container column"
 				style={{
 					backgroundImage:
 						'url(https://3d.bk.tudelft.nl/ken/img/blog/new-google-maps.png)',

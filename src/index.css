@@ -4,6 +4,7 @@ html,
 body,
 #root {
 	height: 100%;
+	font-family: 'Muli', sans-serif;
 }
 
 hr {
@@ -14,15 +15,38 @@ hr {
 	height: 100%;
 }
 
+.loader-container {
+	padding: 1rem;
+	text-align: center;
+}
+
+.loader {
+	height: 3rem;
+	width: 3rem;
+}
+
 .box {
 	background-color: white;
 	border-radius: 0;
 	padding: 1.25rem;
 }
 
+.media-content hr {
+	background-color: #cecece;
+	margin-top: 0.3rem;
+	margin-bottom: 0.5rem;
+}
+
+.media-content > small {
+	display: block;
+	text-align: center;
+	color: grey;
+}
+
 .sidebar-container {
-	background-color: #555b6e;
+	background-color: #0c0e0f;
 	overflow-y: scroll;
+	max-width: 22rem;
 }
 
 .dropzone {
