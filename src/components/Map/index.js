@@ -43,14 +43,15 @@ class Map extends Component {
 	renderMap(loading) {
 		if (loading) return <Loader className="is-fullheight" />;
 
-		const GoogleMapComponent = withGoogleMap(() => (
-			<GoogleMap
-				defaultCenter={{
+		const defaultCenter = this.props.trips[0]
+			? this.props.trips[0].coords[0]
+			: {
 					lat: 37.74977073928103,
 					lng: -122.39242219446099,
-				}}
-				defaultZoom={10}
-			>
+			  };
+
+		const GoogleMapComponent = withGoogleMap(() => (
+			<GoogleMap defaultCenter={defaultCenter} defaultZoom={10}>
 				{this.renderPolylines(
 					this.props.trips.filter(trip => trip.active),
 				)}
