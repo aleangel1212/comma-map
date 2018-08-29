@@ -10,9 +10,16 @@ class App extends Component {
 		trips: [],
 	};
 
+	clearTrips() {
+		this.setState({ trips: [] });
+	}
+
 	onDrop(acceptedFiles) {
+		const newTripLen = this.state.trips.length + acceptedFiles.length;
+
+		this.setState({ loading: true });
+
 		acceptedFiles.forEach(file => {
-			this.setState({ loading: true });
 			const reader = new FileReader();
 
 			reader.onload = () => {
@@ -45,9 +52,9 @@ class App extends Component {
 					coords,
 				};
 
+				this.setState({ trips: [...this.state.trips, trip] });
 				this.setState({
-					trips: [...this.state.trips, trip],
-					loading: false,
+					loading: this.state.trips.length !== newTripLen,
 				});
 			};
 
@@ -66,7 +73,12 @@ class App extends Component {
 					trips={this.state.trips}
 					loading={this.state.loading}
 				/>
-				<Map />
+
+				<Map
+					clearTrips={this.clearTrips.bind(this)}
+					trips={this.state.trips}
+					loading={this.state.loading}
+				/>
 			</div>
 		);
 	}

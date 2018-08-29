@@ -1,5 +1,7 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css';
 
+/* --- General --- */
+
 html,
 body,
 #root {
@@ -11,18 +13,9 @@ hr {
 	margin-top: 0;
 }
 
+/* --- Bulma Overrides --- */
 .columns {
 	height: 100%;
-}
-
-.loader-container {
-	padding: 1rem;
-	text-align: center;
-}
-
-.loader {
-	height: 3rem;
-	width: 3rem;
 }
 
 .box {
@@ -43,10 +36,35 @@ hr {
 	color: grey;
 }
 
+.is-fullheight {
+	height: 100%;
+}
+
+/* --- Custom --- */
+.loader-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+}
+
+.loader {
+	height: 3rem;
+	width: 3rem;
+}
+
 .sidebar-container {
 	background-color: #0c0e0f;
 	overflow-y: scroll;
 	max-width: 22rem;
+}
+
+.sidebar-container {
+	-ms-overflow-style: none;
+	overflow: -moz-scrollbars-none;
+}
+.sidebar-container::-webkit-scrollbar {
+	display: none;
 }
 
 .dropzone {
@@ -60,5 +78,21 @@ hr {
 }
 
 .dropping {
-	background-color: #9ee493;
+	background-color: #64cd6d;
+}
+
+.trip-container {
+	padding: 1rem;
+	padding-top: 0;
+}
+
+.map-container {
+	position: relative;
+}
+
+.clear-trips {
+	position: absolute;
+	bottom: 1rem;
+	left: 1rem;
+	z-index: 10;
 }

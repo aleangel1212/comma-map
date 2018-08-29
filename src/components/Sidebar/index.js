@@ -1,6 +1,8 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
+import { Loader } from '../Common';
+
 function renderTripDetails(trips) {
 	if (trips.length === 0)
 		return <h5 className="is-size-5 has-text-centered">No trips :(</h5>;
@@ -37,12 +39,7 @@ function renderTripDetails(trips) {
 }
 
 function renderDropzone({ loading, onDrop }) {
-	if (loading)
-		return (
-			<div className="loader-container">
-				<div className="loader" />
-			</div>
-		);
+	if (loading) return <Loader />;
 
 	return (
 		<Dropzone
@@ -60,12 +57,12 @@ function renderDropzone({ loading, onDrop }) {
 }
 
 const Sidebar = props => (
-	<div className="column sidebar-container">
+	<div className="column sidebar-container is-paddingless">
 		{renderDropzone(props)}
 
 		<hr />
 
-		{renderTripDetails(props.trips)}
+		<div className="trip-container">{renderTripDetails(props.trips)}</div>
 	</div>
 );
 
