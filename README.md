@@ -47,6 +47,8 @@ The trip files should be formatted as follows:
 }
 ```
 
+The sample set of data provided is available for download [here](http://avecchi.me/comma-map/trips.zip).
+
 [react]: http://facebook.github.io/react/
 [webpack]: http://webpack.github.io/
 [babeljs]: https://babeljs.io/
