@@ -55,12 +55,17 @@ hr {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 	padding: 1rem;
 }
 
 .loader {
 	height: 3rem;
 	width: 3rem;
+}
+
+.progress {
+	margin-top: 1rem;
 }
 
 .sidebar-container {

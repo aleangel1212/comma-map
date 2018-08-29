@@ -3,8 +3,8 @@ import Dropzone from 'react-dropzone';
 
 import { Loader } from '../Common';
 
-function renderDropzone({ loading, onDrop }) {
-	if (loading) return <Loader />;
+function renderDropzone({ loading, onDrop, progress }) {
+	if (loading) return <Loader progress={progress} />;
 
 	return (
 		<Dropzone

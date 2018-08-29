@@ -10,6 +10,7 @@ class App extends Component {
 		loading: false,
 		markerInfo: null,
 		trips: [],
+		progress: 0,
 	};
 
 	clearTrips() {
@@ -104,9 +105,16 @@ class App extends Component {
 					coords,
 				};
 
-				this.setState({ trips: [...this.state.trips, trip] });
+				this.setState({
+					trips: [...this.state.trips, trip],
+					progress: (this.state.trips.length / newTripLen) * 100,
+				});
 				this.setState({
 					loading: this.state.trips.length !== newTripLen,
+					progress:
+						this.state.trips.length !== newTripLen
+							? this.state.progress
+							: 0,
 				});
 			};
 
@@ -180,6 +188,7 @@ class App extends Component {
 					trips={this.state.trips}
 					loading={this.state.loading}
 					toggleTrip={this.toggleTrip.bind(this)}
+					progress={this.state.progress}
 				/>
 
 				<Map
