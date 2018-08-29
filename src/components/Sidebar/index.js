@@ -17,7 +17,7 @@ function renderDropzone({ loading, onDrop }) {
 				<i className="fas fa-2x fa-file-download" />
 			</span>
 			<h4 className="is-size-4">Drop trip file(s) here</h4>
-			<h6 className="is-size-6">Click on trips to activate in map</h6>
+			<h6 className="is-size-6">Click on trips to view in map</h6>
 		</Dropzone>
 	);
 }

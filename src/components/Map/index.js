@@ -43,8 +43,10 @@ class Map extends Component {
 	renderMap(loading) {
 		if (loading) return <Loader className="is-fullheight" />;
 
-		const defaultCenter = this.props.trips[0]
-			? this.props.trips[0].coords[0]
+		const firstActive = this.props.trips.find(trip => trip.active);
+
+		const defaultCenter = firstActive
+			? firstActive.coords[0]
 			: {
 					lat: 37.74977073928103,
 					lng: -122.39242219446099,

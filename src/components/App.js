@@ -12,18 +12,18 @@ class App extends Component {
 		trips: [],
 	};
 
-	usedColors = {};
-
 	clearTrips() {
 		this.usedColors = {};
 		this.setState({ trips: [], markerInfo: null });
 	}
 
 	toggleTrip(index) {
-		const newTrips = this.state.trips.map(
-			(trip, i) =>
-				i === index ? { ...trip, active: !trip.active } : trip,
-		);
+		const newTrips = this.state.trips;
+
+		newTrips[index] = {
+			...newTrips[index],
+			active: !newTrips[index].active,
+		};
 
 		this.setState({ trips: newTrips, markerInfo: null });
 	}
@@ -84,15 +84,10 @@ class App extends Component {
 
 				const coords = data.coords;
 
-				let color = '#ff0000';
-
-				while (this.usedColors[color])
-					color = randomcolor({
-						luminosity: 'bright',
-						hue: 'random',
-					});
-
-				this.usedColors[color] = true;
+				const color = randomcolor({
+					luminosity: 'bright',
+					hue: 'random',
+				});
 
 				const trip = {
 					start_time: start_time.format('LT'),
@@ -123,7 +118,7 @@ class App extends Component {
 	}
 
 	renderToggleButtons(numTrips) {
-		if (numTrips < 1) return null;
+		if (numTrips < 1 || this.state.loading) return null;
 
 		return (
 			<div className="buttons has-addons toggle-buttons">
@@ -144,7 +139,7 @@ class App extends Component {
 	}
 
 	renderClearButton(numTrips) {
-		if (numTrips < 1) return null;
+		if (numTrips < 1 || this.state.loading) return null;
 
 		return (
 			<a
