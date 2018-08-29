@@ -19,6 +19,10 @@ hr {
 	position: relative;
 }
 
+.has-padding {
+	padding: 1rem;
+}
+
 .box {
 	background-color: white;
 	border-radius: 0;
