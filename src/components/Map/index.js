@@ -5,7 +5,7 @@ import { Loader } from '../Common';
 
 class Map extends Component {
 	shouldComponentUpdate(nextProps) {
-		return nextProps.speed === null;
+		return nextProps.markerInfo === null;
 	}
 
 	renderPolylines(trips) {
@@ -27,7 +27,7 @@ class Map extends Component {
 
 		trips.forEach(trip =>
 			trip.coords.forEach((coord, i) => {
-				if (i % 100 === 0) coords.push(coord);
+				if (i % 200 === 0) coords.push(coord);
 			}),
 		);
 
@@ -35,7 +35,7 @@ class Map extends Component {
 			<Marker
 				key={i}
 				position={coord}
-				onClick={() => this.props.setSpeed(coord.speed)}
+				onClick={() => this.props.setMarkerInfo(coord)}
 			/>
 		));
 	}

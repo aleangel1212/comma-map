@@ -8,7 +8,7 @@ import Map from './Map';
 class App extends Component {
 	state = {
 		loading: false,
-		speed: null,
+		markerInfo: null,
 		trips: [],
 	};
 
@@ -16,7 +16,7 @@ class App extends Component {
 
 	clearTrips() {
 		this.usedColors = {};
-		this.setState({ trips: [], speed: null });
+		this.setState({ trips: [], markerInfo: null });
 	}
 
 	toggleTrip(index) {
@@ -25,17 +25,31 @@ class App extends Component {
 				i === index ? { ...trip, active: !trip.active } : trip,
 		);
 
-		this.setState({ trips: newTrips, speed: null });
+		this.setState({ trips: newTrips, markerInfo: null });
 	}
 
-	setSpeed(speed) {
-		this.setState({ speed });
+	enableAll() {
+		this.setState({
+			trips: this.state.trips.map(trip => ({ ...trip, active: true })),
+			markerInfo: null,
+		});
+	}
+
+	disableAll() {
+		this.setState({
+			trips: this.state.trips.map(trip => ({ ...trip, active: false })),
+			markerInfo: null,
+		});
+	}
+
+	setMarkerInfo(coord) {
+		this.setState({ markerInfo: coord });
 	}
 
 	onDrop(acceptedFiles) {
 		const newTripLen = this.state.trips.length + acceptedFiles.length;
 
-		this.setState({ loading: true, speed: null });
+		this.setState({ loading: true, markerInfo: null });
 
 		acceptedFiles.forEach(file => {
 			const reader = new FileReader();
@@ -108,6 +122,27 @@ class App extends Component {
 		});
 	}
 
+	renderToggleButtons(numTrips) {
+		if (numTrips < 1) return null;
+
+		return (
+			<div className="buttons has-addons toggle-buttons">
+				<span
+					className="button is-success"
+					onClick={() => this.enableAll()}
+				>
+					Enable All
+				</span>
+				<span
+					className="button is-danger"
+					onClick={() => this.disableAll()}
+				>
+					Disable All
+				</span>
+			</div>
+		);
+	}
+
 	renderClearButton(numTrips) {
 		if (numTrips < 1) return null;
 
@@ -121,14 +156,21 @@ class App extends Component {
 		);
 	}
 
-	renderMarkerSpeed(speed) {
-		if (!speed) return null;
+	renderMarkerInfo(markerInfo) {
+		if (!markerInfo) return null;
 
 		return (
 			<div className="card marker-info">
 				<div className="card-content">
 					<div className="content">
-						Speed at Sample: {Math.round(speed * 100) / 100} mph
+						Latitude: {Math.round(markerInfo.lat * 10000) / 10000}
+						<br />
+						Longitude: {Math.round(markerInfo.lng * 10000) / 10000}
+						<br />
+						Speed: {Math.round(markerInfo.speed * 100) / 100} mph
+						<br />
+						Distance: {Math.round(markerInfo.dist * 100) / 100}{' '}
+						miles
 					</div>
 				</div>
 			</div>
@@ -149,11 +191,12 @@ class App extends Component {
 					clearTrips={this.clearTrips.bind(this)}
 					trips={this.state.trips}
 					loading={this.state.loading}
-					speed={this.state.speed}
-					setSpeed={this.setSpeed.bind(this)}
+					markerInfo={this.state.markerInfo}
+					setMarkerInfo={this.setMarkerInfo.bind(this)}
 				/>
 				{this.renderClearButton(this.state.trips.length)}
-				{this.renderMarkerSpeed(this.state.speed)}
+				{this.renderMarkerInfo(this.state.markerInfo)}
+				{this.renderToggleButtons(this.state.trips.length)}
 			</div>
 		);
 	}
