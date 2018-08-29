@@ -166,6 +166,8 @@ class App extends Component {
 			<div className="card marker-info">
 				<div className="card-content">
 					<div className="content">
+						<strong>Marker Info</strong>
+						<hr />
 						Latitude: {Math.round(markerInfo.lat * 10000) / 10000}
 						<br />
 						Longitude: {Math.round(markerInfo.lng * 10000) / 10000}

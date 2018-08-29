@@ -46,6 +46,12 @@ hr {
 	color: grey;
 }
 
+.card-content hr {
+	background-color: #cecece;
+	margin-top: 0.3rem;
+	margin-bottom: 0.5rem;
+}
+
 .media-right {
 	color: #acacac;
 }
@@ -114,7 +120,7 @@ hr {
 
 .marker-info {
 	position: absolute;
-	bottom: 4rem;
+	bottom: 8rem;
 	left: 23rem;
 	z-index: 10;
 }
