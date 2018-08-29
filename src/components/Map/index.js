@@ -1,50 +1,64 @@
-import React from 'react';
-import { withGoogleMap, GoogleMap, Polyline } from 'react-google-maps';
+import React, { Component } from 'react';
+import { withGoogleMap, GoogleMap, Marker, Polyline } from 'react-google-maps';
 
 import { Loader } from '../Common';
 
-const Map = props => {
-	function renderClearButton(numTrips) {
-		if (numTrips < 1) return null;
-
-		return (
-			<a
-				className="clear-trips button is-danger"
-				onClick={props.clearTrips}
-			>
-				Clear Trips
-			</a>
-		);
+class Map extends Component {
+	shouldComponentUpdate(nextProps) {
+		return nextProps.speed === null;
 	}
 
-	function renderPolylines(trips) {
+	renderPolylines(trips) {
 		return trips.map((trip, i) => (
 			<Polyline
 				key={i}
 				path={trip.coords}
 				geodesic={true}
 				options={{
-					strokeColor: '#ff2527',
+					strokeColor: trip.color,
 					strokeWeight: 2,
 				}}
 			/>
 		));
 	}
 
-	const GoogleMapComponent = withGoogleMap(() => (
-		<GoogleMap
-			defaultCenter={{
-				lat: 37.74977073928103,
-				lng: -122.39242219446099,
-			}}
-			defaultZoom={13}
-		>
-			{renderPolylines(props.trips)}
-		</GoogleMap>
-	));
+	renderMarkers(trips) {
+		const coords = [];
 
-	function renderMap(loading) {
+		trips.forEach(trip =>
+			trip.coords.forEach((coord, i) => {
+				if (i % 100 === 0) coords.push(coord);
+			}),
+		);
+
+		return coords.map((coord, i) => (
+			<Marker
+				key={i}
+				position={coord}
+				onClick={() => this.props.setSpeed(coord.speed)}
+			/>
+		));
+	}
+
+	renderMap(loading) {
 		if (loading) return <Loader className="is-fullheight" />;
+
+		const GoogleMapComponent = withGoogleMap(() => (
+			<GoogleMap
+				defaultCenter={{
+					lat: 37.74977073928103,
+					lng: -122.39242219446099,
+				}}
+				defaultZoom={10}
+			>
+				{this.renderPolylines(
+					this.props.trips.filter(trip => trip.active),
+				)}
+				{this.renderMarkers(
+					this.props.trips.filter(trip => trip.active),
+				)}
+			</GoogleMap>
+		));
 
 		return (
 			<GoogleMapComponent
@@ -56,12 +70,13 @@ const Map = props => {
 		);
 	}
 
-	return (
-		<div className="map-container column is-paddingless">
-			{renderClearButton(props.trips.length)}
-			{renderMap(props.loading)}
-		</div>
-	);
-};
+	render() {
+		return (
+			<div className="map-container column is-paddingless">
+				{this.renderMap(this.props.loading)}
+			</div>
+		);
+	}
+}
 
 export default Map;

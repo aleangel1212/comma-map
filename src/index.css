@@ -16,12 +16,18 @@ hr {
 /* --- Bulma Overrides --- */
 .columns {
 	height: 100%;
+	position: relative;
 }
 
 .box {
 	background-color: white;
 	border-radius: 0;
 	padding: 1.25rem;
+	transition: all 0.2s ease;
+}
+
+.box:hover {
+	background-color: #f3f3f3;
 }
 
 .media-content hr {
@@ -34,6 +40,10 @@ hr {
 	display: block;
 	text-align: center;
 	color: grey;
+}
+
+.media-right {
+	color: #acacac;
 }
 
 .is-fullheight {
@@ -86,13 +96,16 @@ hr {
 	padding-top: 0;
 }
 
-.map-container {
-	position: relative;
-}
-
 .clear-trips {
 	position: absolute;
 	bottom: 1rem;
-	left: 1rem;
+	left: 23rem;
+	z-index: 10;
+}
+
+.marker-info {
+	position: absolute;
+	bottom: 4rem;
+	left: 23rem;
 	z-index: 10;
 }

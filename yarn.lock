@@ -3071,10 +3071,6 @@ google-maps-infobox@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/google-maps-infobox/-/google-maps-infobox-2.0.0.tgz#1ea6de93c0cdf4138c2d586331835c83dcc59dc2"
 
-google-maps-react@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/google-maps-react/-/google-maps-react-2.0.2.tgz#e03fbba032fe570fb38744bf9cd10b946c591cae"
-
 got@^6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
@@ -5633,6 +5629,10 @@ randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.0.6.tgz#d302c522948588848a8d300c932b44c24231da80"
   dependencies:
     safe-buffer "^5.1.0"
+
+randomcolor@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/randomcolor/-/randomcolor-0.5.3.tgz#7f90f2f2a7f6d5a52232161eeaeeaea9ac3b5815"
 
 randomfill@^1.0.3:
   version "1.0.4"
