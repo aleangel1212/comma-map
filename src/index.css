@@ -122,6 +122,6 @@ hr {
 .toggle-buttons {
 	position: absolute;
 	left: 22.75rem;
-	top: 4rem;
+	bottom: 4rem;
 	z-index: 10;
 }

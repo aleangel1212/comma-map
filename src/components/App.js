@@ -151,7 +151,7 @@ class App extends Component {
 
 		return (
 			<a
-				className="clear-trips button is-danger"
+				className="clear-trips button is-warning"
 				onClick={this.clearTrips.bind(this)}
 			>
 				Clear Trips
